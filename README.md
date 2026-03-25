@@ -38,8 +38,10 @@ curl -o ~/.claude/skills/handover/SKILL.md https://raw.githubusercontent.com/fer
 To see what a completed handover looks like, copy the example project:
 
 ```bash
-git clone https://github.com/fergalbittles/claude-handover.git /tmp/claude-handover
-cp -r /tmp/claude-handover/plugins/claude-handover/handovers/example-project ~/.claude/handovers/example-project
+mkdir -p ~/.claude/handovers
+git clone https://github.com/fergalbittles/claude-handover.git /tmp/claude-handover-example && \
+  cp -r /tmp/claude-handover-example/plugins/claude-handover/handovers/example-project ~/.claude/handovers/example-project && \
+  rm -rf /tmp/claude-handover-example
 ```
 
 Then run `/handover pickup example-project` in Claude Code.
