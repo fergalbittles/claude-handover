@@ -1,0 +1,8 @@
+resources: []
+# Example entries:
+# - filename: "api-setup-guide.md"
+#   description: "How to configure the payment gateway for a new partner"
+#   added_date: "2026-03-25"
+# - filename: "meeting-notes-webhook-migration.md"
+#   description: "Notes from Acme meeting about v2 webhook timeline"
+#   added_date: "2026-03-26"

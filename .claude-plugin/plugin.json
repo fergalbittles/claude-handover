@@ -1,0 +1,13 @@
+{
+  "name": "claude-handover",
+  "description": "Capture and transfer project knowledge for team handovers. Helps departing engineers dump everything they know, and helps incoming engineers ramp up with proactive guidance.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Fergal Bittles",
+    "email": "fergalbittles@gmail.com"
+  },
+  "homepage": "https://github.com/fergalbittles/claude-handover",
+  "repository": "https://github.com/fergalbittles/claude-handover",
+  "license": "MIT",
+  "keywords": ["handover", "onboarding", "knowledge-transfer", "project-management", "team-transitions"]
+}

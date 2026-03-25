@@ -1,0 +1,61 @@
+project:
+  name: "Example Project"
+  slug: "example-project"
+  summary: "A sample handover to show what a completed handover looks like. Delete this whenever you want."
+  captured_date: "2026-03-25"
+  last_updated: "2026-03-25"
+  staleness_threshold_days: 14
+
+handover:
+  from:
+    name: "John"
+    role: "Backend Developer"
+    contact_preference: "email_only"
+    contact_details: "john@example.com"
+    return_date: "2026-04-14"
+  to:
+    - name: "Jordan"
+      role: "Backend Developer"
+
+people:
+  - name: "Zoey (Spark)"
+    role: "Senior Dev, tech lead"
+    org: "Internal"
+    context: "Knows the payment system inside out. Go-to for architecture questions."
+  - name: "Casey"
+    role: "Product Manager"
+    org: "Internal"
+    context: "Owns the roadmap. Check with them before reprioritizing."
+  - name: "Riley"
+    role: "Technical contact"
+    org: "Acme Corp (partner)"
+    context: "Main point of contact on the partner side. Responsive on email."
+
+channels:
+  - name: "#proj-payments"
+    purpose: "Internal team discussions"
+  - name: "#acme-integration"
+    purpose: "Shared channel with Acme Corp partner"
+
+environments:
+  - name: "Acme Staging"
+    status: "Active — testing new webhook format"
+    notes: "Uses test API keys only"
+  - name: "Acme Production"
+    status: "Live but still onboarding — only processing test transactions"
+    notes: "Be careful with real data. Only target test accounts."
+
+repos:
+  - name: "payment-gateway"
+    purpose: "Core service handling payment processing and webhook ingestion"
+    notes: "Main codebase for this integration"
+  - name: "payment-api-tester"
+    purpose: "Utility for hitting partner API endpoints with test payloads"
+    notes: "Uses prod URLs — only use test accounts"
+
+ticket_system: "Jira"
+ticket_search_hint: "Search for 'acme' in the current sprint board"
+
+recurring_meetings:
+  - name: "Weekly Acme sync"
+    notes: "Jordan should be added to this call"
