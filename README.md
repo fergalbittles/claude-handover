@@ -30,7 +30,7 @@ If you prefer to install manually:
 
 ```bash
 mkdir -p ~/.claude/skills/handover
-curl -o ~/.claude/skills/handover/SKILL.md https://raw.githubusercontent.com/fergalbittles/claude-handover/main/skills/handover/SKILL.md
+curl -o ~/.claude/skills/handover/SKILL.md https://raw.githubusercontent.com/fergalbittles/claude-handover/main/plugins/claude-handover/skills/handover/SKILL.md
 ```
 
 ### Try the Example Project
@@ -39,7 +39,7 @@ To see what a completed handover looks like, copy the example project:
 
 ```bash
 git clone https://github.com/fergalbittles/claude-handover.git /tmp/claude-handover
-cp -r /tmp/claude-handover/handovers/example-project ~/.claude/handovers/example-project
+cp -r /tmp/claude-handover/plugins/claude-handover/handovers/example-project ~/.claude/handovers/example-project
 ```
 
 Then run `/handover pickup example-project` in Claude Code.
