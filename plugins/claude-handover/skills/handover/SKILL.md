@@ -338,67 +338,85 @@ When the user runs `/handover pickup <project>`:
 Compare `last_updated` from handover.yaml to today's date. If the difference exceeds `staleness_threshold_days`:
 > "Heads up — this handover was captured on <date>, which is <N> days ago. Some priorities or blockers may have changed. Consider checking with the team for the latest."
 
-### Step 3: Proactive introduction
+### Step 3: Present a compact header + menu
 
-Present the handover proactively. Don't wait for the user to ask the right questions — surface what they need to know. Use actual names and nicknames throughout.
+Don't dump everything at once. Present a short header with the essential context, then a numbered menu of areas the user can explore. This keeps things clean and lets the user control what they see.
 
-Structure the introduction as:
+**Format the header as:**
 
-**Project Overview:**
-> "<summary from YAML>. Here's everything you need to know."
+```
+**<Project Name>** — <summary>
 
-**Key People:**
-List each person with their name, nickname, role, org, and why they matter. Example:
-> "- **Zoey (Spark)** — Senior Dev, your go-to for deep technical internals. Owns the webhook migration tickets."
-> "- **Riley** (Acme Corp) — Technical contact on the partner side."
+Captured by <from_name> on <captured_date> | <fresh/stale> | <contact preference one-liner>. <Return date if set.>
 
-**Communication Channels:**
-List each channel with its purpose.
+<If updates exist:> <count> updates since capture.
+```
 
-**Environments:**
-List each environment with its current status and any warnings.
+**Contact preference one-liners:**
+- `available`: "<Name> is reachable at <contact_details>"
+- `email_only`: "<Name> prefers email only: <contact_details>"
+- `urgent_only`: "<Name> is available for urgent issues only"
+- `do_not_disturb`: "<Name> is not available — do not contact"
 
-**Repositories:**
-List each repo with what it does and any important notes.
+**Important:** When the preference is `do_not_disturb`, NEVER suggest contacting them anywhere in the handover, even if they are the only person who knows something. Suggest alternative sources instead.
 
-**Priorities (in order):**
-Present priorities from context.md with full context — what, why, who owns it, what state it's in.
+**Then present the menu.** Build it dynamically from what's actually in the handover — only show items that have content:
 
-**Active Blockers:**
-Present blockers with all available debugging context and hypotheses.
+```
+**Here's what I can brief you on:**
 
-**Gotchas & Tribal Knowledge:**
-Present warnings, edge cases, things that would bite someone who doesn't know.
+1. Project overview & architecture
+2. Key people & contacts (<count> people)
+3. Communication channels & meetings
+4. Environments (<count> environments)
+5. Repositories (<count> repos)
+6. Priorities (<count> items)
+7. Active blockers (<count> items)
+8. Gotchas & tribal knowledge (<count> items)
+9. <Any additional sections from context.md>
+10. <Any resource files>
 
-**Contact Preference:**
-Based on `contact_preference` in handover.yaml:
-- `available`: "<Name> is available — reach out directly at <contact_details>."
-- `email_only`: "<Name> prefers email only: <contact_details>."
-- `urgent_only`: "<Name> is only available for urgent issues. Try other contacts first."
-- `do_not_disturb`: "<Name> is not available and has asked not to be disturbed. Do not contact them."
+**Quick summary:** The highest priority is **<top priority>**, which is currently **<status/blocker if any>**.
 
-**Important:** When the preference is `do_not_disturb`, NEVER suggest contacting them, even if they are the only person who knows something. Instead, suggest alternative sources of information (other team members, documentation, ticket systems).
+Ask me about any of the above by number or name, or say "give me everything" for the full briefing.
+```
 
-### Step 4: Present updates
+### Step 4: Handle user's choice
 
-If there are files in `updates/`, present them chronologically:
+**If the user picks a number or topic:** Present just that section with clean formatting:
+- Use tables for structured data (environments, people)
+- Use numbered lists for priorities
+- Use bullet points for gotchas
+- Use horizontal rules (`---`) between major sections
+- Keep it scannable — bold the key info, don't bury it in paragraphs
+
+**If the user says "give me everything":** Present all sections sequentially with clean visual separation:
+- Use `---` between each major section
+- Use tables for environments, people, and repos
+- Use compact formatting — no long paragraphs where bullet points work
+- Bold the most important warnings and action items
+- End with the suggested next action
+
+**If the user asks a specific question:** Answer it directly from the handover context without presenting a full section.
+
+### Step 5: Present updates (if any)
+
+If there are files in `updates/`, present them chronologically either as part of the full briefing or when the user asks about updates:
 > "Since the handover was captured, here are the updates:"
-> - <date>: <summary of update>
-> - <date>: <summary of update>
+> - **<date>:** <summary of update>
 
-### Step 5: Suggest next actions
+### Step 6: Suggest next actions
 
-Based on the priorities, suggest where to start:
-> "Based on the current priorities, I'd suggest starting with: <top priority>. Want me to walk you through it?"
+After presenting content (whether a single section or the full briefing), suggest where to start:
+> "Based on the current priorities, I'd suggest starting with: **<top priority>**. Want me to walk you through it?"
 
-### Step 6: Offer interaction style
+### Step 7: Adapt to the user's style
 
-> "Would you like a full walkthrough of any area, or do you want to jump in and ask questions?"
-
-Adapt from here:
-- If they ask targeted questions, give targeted answers.
-- If they want the walkthrough, go deep on each area.
-- If they seem to know what they're doing, stay out of the way.
+From here, follow the user's lead:
+- If they keep asking numbered items, keep presenting sections cleanly
+- If they ask targeted questions, give targeted answers
+- If they seem to know what they're doing, stay out of the way
+- Don't re-present the menu unless they ask for it
 
 ### Step 7: Stay available and proactively connect dots
 
