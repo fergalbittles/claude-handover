@@ -1,7 +1,7 @@
 {
   "name": "claude-handover",
   "description": "Capture and transfer project knowledge for team handovers. Helps departing engineers dump everything they know, and helps incoming engineers ramp up with proactive guidance.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": {
     "name": "Fergal Bittles",
     "email": "fergalbittles@gmail.com"

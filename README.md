@@ -24,6 +24,8 @@ Register the marketplace and install:
 /plugin install claude-handover@claude-handover
 ```
 
+**Note:** After installing, start a new Claude Code session for the `/handover` commands to become available. In the meantime, you can use natural language — just say "I want to pick up a handover" and Claude will know what to do.
+
 ### Manual Installation
 
 If you prefer to install manually:
