@@ -493,15 +493,26 @@ When the user runs `/handover share <project>`:
 
 When the user runs `/handover clone <repo-url>`:
 
-1. Extract the project slug from the repo URL (e.g., `handover-my-project` -> `my-project`, or use the slug from `handover.yaml` after cloning).
-2. Check if `~/.claude/handovers/` exists, create if not.
-3. Clone the repo:
+1. Check if `~/.claude/handovers/` exists, create if not: `mkdir -p ~/.claude/handovers`
+2. Clone to a temporary location first to read the slug:
    ```bash
-   git clone <repo-url> ~/.claude/handovers/<slug>
+   git clone <repo-url> /tmp/handover-clone-temp
    ```
-4. Read `handover.yaml` to confirm it's a valid handover.
-5. Confirm:
+3. Read `handover.yaml` from the temp clone to get the actual project slug:
+   ```bash
+   # Read the slug field from handover.yaml
+   ```
+4. Check if `~/.claude/handovers/<slug>/` already exists:
+   - If it exists, ask: "A handover for `<slug>` already exists locally. Want to replace it with the remote version, or keep what you have?"
+   - If replacing, remove the old one first: `rm -rf ~/.claude/handovers/<slug>`
+5. Move the temp clone to the correct location:
+   ```bash
+   mv /tmp/handover-clone-temp ~/.claude/handovers/<slug>
+   ```
+6. Confirm:
    > "Handover cloned! Run `/handover pickup <slug>` to get started, or `/handover projects` to see all available handovers."
+
+**Important:** Always use the `slug` from `handover.yaml`, NOT the repo name. The repo might be called `handover-softswiss` but the slug is `softswiss` — the folder must match the slug for pickup to work.
 
 ---
 
